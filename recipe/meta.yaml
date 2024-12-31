@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 94c1ec96c0a0d5e8e7d389ed8cde6882ac246940507c5e6b86e91945c2968d46
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - setuptools >=61.0
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - hjson-py
 
 test:
@@ -28,6 +28,7 @@ test:
     - super_collections
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
@@ -38,11 +39,13 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.8
+        - python {{ python_min }}
       run:
         - {{ pin_subpackage("super_collections", max_pin="x.x.x") }}
-        - python >=3.8
+        - python >={{ python_min }}
     test:
+      requires:
+        - python {{ python_min }}
       imports:
         - super_collections
 
