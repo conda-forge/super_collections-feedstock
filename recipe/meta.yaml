@@ -1,5 +1,5 @@
 {% set name = "super_collections" %}
-{% set version = "0.5.6" %}
+{% set version = "0.5.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c48dead52b2a5dc37a30cbbcb541a68078e9be50ecddd07dbe9393734b9041e4
+  sha256: 796a9ab231487e488b2a8588c9bb6ca0dc719d66abf775ca67177e34de8f3bc0
 
 build:
   noarch: python
